@@ -1,5 +1,5 @@
 # ProductCatalog
-CRUD REST API
+CRUD REST API<br>
 <b>Built with:</b>
 <ul>
   <li>Spring Boot</li>

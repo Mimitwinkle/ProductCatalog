@@ -1,4 +1,5 @@
 # ProductCatalog
+Backend for Product Catalog web application
 CRUD REST API
 <p>
 <b>Built with:</b>

@@ -21,50 +21,43 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/products")
 public class ProductController {
 	
-	private ProductService productService;
+	private final ProductService productService;
 	
 	
 	public ProductController(ProductService productService) {
-		super();
 		this.productService = productService;
 	}
 
 	// GET
-	@GetMapping
+	@GetMapping()
 	public List<Product> getAllProducts(){
-
 		return productService.getAllProducts();
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/find/{id}")
 	public ResponseEntity<Product> findProductById(@PathVariable("id") long productId) {
-		
 		return new ResponseEntity<Product>(productService.getProductById(productId), HttpStatus.OK);
 	}
 	
-	// Get by price
+	// ToDo: Get by price
 	
 	// POST
 	@PostMapping("/add")
 	public ResponseEntity<Product> saveProduct(@RequestBody Product product) {
-		
 		return new ResponseEntity<Product>(productService.saveProduct(product), HttpStatus.CREATED);
 	}
 	
 	// PUT
-	@PutMapping("/update/{id}")
-	public ResponseEntity<Product> updateProduct(@RequestBody Product product, @PathVariable("id") long productId) {
-		
-		return new ResponseEntity<Product>(productService.updateProduct(product, productId), HttpStatus.OK);
+	@PutMapping("/update")
+	public ResponseEntity<Product> updateProduct(@RequestBody Product product) {
+		return new ResponseEntity<Product>(productService.updateProduct(product), HttpStatus.OK);
 	}
 	
 	// DELETE
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<String> deleteProduct(@PathVariable("id") long productId) {
-		
+	public ResponseEntity<?> deleteProduct(@PathVariable("id") long productId) {
 		productService.deleteProduct(productId);
-		
-		return new ResponseEntity<String>("Product deleted successfully.", HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 }

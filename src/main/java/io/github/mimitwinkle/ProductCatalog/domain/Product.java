@@ -9,9 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-//import lombok.Data;
 
-//@Data
 @Entity
 @Table(name="products")
 public class Product {
@@ -35,18 +33,21 @@ public class Product {
 	@Column(name = "description")
 	private String description;
 	
+	@Column(name = "imageUrl")
+	private String imageUrl;
+	
 	
 	public Product() {
 	}
 	
-	public Product(int id, String name, double price, String description) {
-		super();
+	public Product(long id, String name, double price, String description, String imageUrl) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.description = description;
+		this.imageUrl = imageUrl;
 	}
-	
+
 	public long getId() {
 		return id;
 	}
@@ -71,6 +72,13 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
 	
 }

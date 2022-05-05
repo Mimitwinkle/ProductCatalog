@@ -16,7 +16,6 @@ public class ProductServiceImpl implements ProductService {
 	private ProductRepository productRepository;
 
 	public ProductServiceImpl(ProductRepository productRepository) {
-		super();
 		this.productRepository = productRepository;
 	}
 
@@ -43,19 +42,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Product updateProduct(Product product, long id) {
+	public Product updateProduct(Product product) {
 		
-		// Check whether product exists in database
-		Product existingProduct = productRepository.findById(id).orElseThrow(() -> 
-		new ResourceNotFoundException("Product", "ID", product));
-		
-		// If found, update data
-		existingProduct.setName(product.getName());
-		existingProduct.setPrice(product.getPrice());
-		existingProduct.setDescription(product.getDescription());
-		productRepository.save(existingProduct);
-		
-		return existingProduct;
+		return productRepository.save(product);
 	}
 
 	@Override
